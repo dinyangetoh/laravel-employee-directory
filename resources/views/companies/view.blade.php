@@ -1,16 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-
-
-    <div class="content">
-        
-        
-        <!-- Companies -->
-
-        <h3>View: {{ $company->name }} | <small>{{ $company->slug }} | <small>{{ $company->created_at }}</small></small></h3>
-        <hr>
-      <p>This is company view</p>
+    <!-- Companies -->
+    <div class='panel panel-default'>
+        <div class='panel-heading'>
+            <h3>{{ $company->name }} <small> <small>since {{ $company->created_at }}</small></small>
+                <div class="pull-right">
+                    <a href="{{ url('/companies/edit/'.$company->slug)}}" class="btn btn-warning">Edit</a>
+                </div>
+            </h3>
+        </div>
+        <div class='panel-body'>
+            <p>{{ $company->description }}</p>
+        </div>
 
     </div>
 

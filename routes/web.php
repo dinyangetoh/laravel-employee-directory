@@ -19,4 +19,6 @@ Route::get('/', 'HomeController@index');
 Route::get('/companies', 'CompaniesController@index');
 Route::post('/companies', 'CompaniesController@store');
 Route::get('/companies/view/{slug}', 'CompaniesController@show');
+Route::get('/companies/edit/{slug}', 'CompaniesController@edit');
+Route::post('/companies/save/{slug}', 'CompaniesController@update');
 Route::get('/companies/delete/{slug}', 'CompaniesController@delete');

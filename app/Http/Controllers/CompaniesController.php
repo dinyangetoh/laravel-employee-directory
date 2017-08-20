@@ -37,6 +37,31 @@ class CompaniesController extends Controller
         }
     }
 
+    public function edit($slug)
+    {
+        $data['company'] = Company::where('slug',$slug)->first();
+        $data['pageTitle'] = "Companies";
+         
+        if($data['company']){
+            return view('companies.edit',$data);
+        }else{
+            return redirect('/companies')->with('error',"Record does not exist");
+        }
+    }
+
+     public function update(Request $request, $slug){
+        
+        $company = Company::where('slug',$slug)->first();
+        // $slug = str_replace(' ','-', strtolower(trim($request->name)));
+        $company->name = ucfirst($request->name);
+        $company->description = $request->description;
+        if($company->save()){
+            return redirect('/companies/view/'.$slug)->with('message',"Company saved successfully");
+        }else{
+            return redirect('/companies')->with('error',"Cannot save record");
+        }
+    }
+
     public function delete($slug)
     {
         $company = Company::where('slug',$slug);
@@ -47,4 +72,15 @@ class CompaniesController extends Controller
             return redirect('/companies')->with('error',"Record does not exist");
         }
     }
+
+    public function addDepartment()
+    {
+
+    }
+
+    public function removeDepartment()
+    {
+
+    }
+
 }
